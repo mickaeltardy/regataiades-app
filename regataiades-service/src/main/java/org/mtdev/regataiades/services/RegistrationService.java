@@ -6,6 +6,7 @@ import org.mtdev.regataiades.business.interfaces.RegistrationManager;
 import org.mtdev.regataiades.business.interfaces.UsersManager;
 import org.mtdev.regataiades.model.Team;
 import org.mtdev.regataiades.model.User;
+import org.mtdev.regataiades.tools.Toolbox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import antlr.build.Tool;
 
 @Controller
 @RequestMapping("/registration")
@@ -43,15 +46,22 @@ public class RegistrationService {
 				Team lTeam = mRegistrationManager.performRegistration(lUser,
 						pRequest);
 				if (lTeam != null) {
-
+					
 					mNotificationManager.setLanguage(pLang);
 					mNotificationManager.notifyAccountCreation(lUser, lTeam);
 					mNotificationManager.notifyFirstRegistration(lTeam);
+					
+					return Toolbox.generateResult("status", "success", "notification", "successfulRegistration");
+				}else{
+					return Toolbox.generateResult("status", "failure", "error", "teamCreationFalure");
 				}
+			}else{
+				return Toolbox.generateResult("status", "failure", "error", "userCreationFalure");
 			}
+		}else{
+			return Toolbox.generateResult("status", "failure", "error", "userAlreadyExists");
 		}
 
-		return null;
 	}
 
 	@RequestMapping("/verify")
