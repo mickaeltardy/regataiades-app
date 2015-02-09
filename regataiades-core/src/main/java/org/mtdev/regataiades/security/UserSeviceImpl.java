@@ -3,8 +3,6 @@ package org.mtdev.regataiades.security;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Table;
-
 import org.mtdev.regataiades.dao.interfaces.UserDao;
 import org.mtdev.regataiades.model.User;
 import org.springframework.beans.factory.annotation.Autowired;

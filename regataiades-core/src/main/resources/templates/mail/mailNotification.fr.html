@@ -1,0 +1,35 @@
+Bonjour $contactName $contactSurname, 
+
+Vous venez de remplir le formulaire d'inscription aux Régataïades, une compétition internationale d'aviron universitaire qui aura lieu le 9 et le 10 mai 2015 à Nantes, France.
+
+Délégation: $name
+
+Equipages inscrits: 
+#set ($map = $crewsCnt )
+#foreach ($mapEntry in $map.entrySet())
+    * $mapEntry.key: $mapEntry.value
+#end
+
+
+#if( !$invited )  
+Le cout d'inscription est de $cost euros
+
+
+Il vous reste à régler les frais d'inscription par un des moyens suivants : 
+* Virement banquaire en précisant "$payementLabel"
+* Chéque à l'ordre de l'Université Nantes Aviron  
+* En liquide le jour de l'arrivée
+#end
+
+Veuillez noter que sans payement effectué au jour de la régate vous ne pourrez pas participer. 
+
+N'hésitez pas à nous contacter pour tous renseignement supplementaire.
+
+A bientôt,
+
+Comité de pilotage des Régataïades
+
+Tél : +33(0)9.54.01.48.10
+Email : contact@regataiades.fr
+Club Université Nantes Aviron (UNA)
+2 rue de la Houssinière 44300 NANTES

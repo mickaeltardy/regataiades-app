@@ -15,14 +15,6 @@ public abstract class EntityDaoImpl<T> implements EntityDao<T> {
 	@Autowired
 	protected SessionFactory mSessionFactory;
 
-	private Class<T> entityBeanType;
-
-	@SuppressWarnings("unchecked")
-	public EntityDaoImpl() {
-		entityBeanType = ((Class<T>) ((ParameterizedType) getClass()
-				.getGenericSuperclass()).getActualTypeArguments()[0]);
-	}
-
 	@Override
 	public boolean create(T pObject) {
 		try {
@@ -30,6 +22,7 @@ public abstract class EntityDaoImpl<T> implements EntityDao<T> {
 			lSession.save(pObject);
 			return true;
 		} catch (Exception lE) {
+			lE.printStackTrace();
 
 		}
 
@@ -43,7 +36,7 @@ public abstract class EntityDaoImpl<T> implements EntityDao<T> {
 			lSession.update(pObject);
 			return true;
 		} catch (Exception lE) {
-
+			lE.printStackTrace();
 		}
 
 		return false;
@@ -56,7 +49,7 @@ public abstract class EntityDaoImpl<T> implements EntityDao<T> {
 			lSession.delete(pObject);
 			return true;
 		} catch (Exception lE) {
-
+			lE.printStackTrace();
 		}
 
 		return false;
@@ -70,6 +63,7 @@ public abstract class EntityDaoImpl<T> implements EntityDao<T> {
 
 			return lCriteria.list();
 		} catch (Exception lE) {
+			lE.printStackTrace();
 
 		}
 
@@ -91,6 +85,7 @@ public abstract class EntityDaoImpl<T> implements EntityDao<T> {
 		try {
 			return pCriteria.list();
 		} catch (Exception lE) {
+			lE.printStackTrace();
 
 		}
 
@@ -104,6 +99,7 @@ public abstract class EntityDaoImpl<T> implements EntityDao<T> {
 
 			return (T) pCriteria.uniqueResult();
 		} catch (Exception lE) {
+			lE.printStackTrace();
 
 		}
 
@@ -113,14 +109,14 @@ public abstract class EntityDaoImpl<T> implements EntityDao<T> {
 	public Criteria getGenericCriteria() {
 		Session lSession = mSessionFactory.getCurrentSession();
 
-		Criteria lCriteria = lSession.createCriteria(getEntityBeanType()
-				.getClass());
+		Criteria lCriteria = lSession.createCriteria(getEntityBeanType());
 		return lCriteria;
 	}
 
 	@SuppressWarnings("rawtypes")
 	protected Class getEntityBeanType() {
-		return entityBeanType;
+		return (Class<?>) ((ParameterizedType) getClass()
+				.getGenericSuperclass()).getActualTypeArguments()[0];
 	}
 
 }

@@ -1,24 +1,39 @@
 package org.mtdev.regataiades.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Formula;
+
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "teams")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Team {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
+	@Column(name = "id", unique = true, nullable = false)
 	protected int id;
 
 	@ManyToOne
@@ -28,11 +43,11 @@ public class Team {
 	@Column(name = "name")
 	protected String name;
 
-	@Column(name = "telephone")
-	protected String telephone;
+	@Column(name = "zipCode")
+	protected String zipCode;
 
 	@Column(name = "address")
-	protected String addresse;
+	protected String address;
 
 	@Column(name = "city")
 	protected String city;
@@ -40,16 +55,16 @@ public class Team {
 	@Column(name = "country")
 	protected String country;
 
-	@Column(name = "contact_name")
+	@Column(name = "contactName")
 	protected String contactName;
 
-	@Column(name = "contact_surname")
+	@Column(name = "contactSurname")
 	protected String contactSurname;
 
-	@Column(name = "contact_telephone")
+	@Column(name = "contactTelephone")
 	protected String contactTelephone;
 
-	@Column(name = "contact_email")
+	@Column(name = "contactEmail")
 	protected String contactEmail;
 
 	@Column(name = "logo")
@@ -57,5 +72,24 @@ public class Team {
 
 	@Column(name = "confirmed")
 	protected int confirmed;
+
+	@Column(name = "invited")
+	protected boolean invited;
+
+	@Column(name = "details")
+	protected String details;
+	
+	@Column(name = "athletesNum")
+	protected int athletesNum;
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL,
+			CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinColumn(name = "fk_team_id")
+	protected Set<Crew> crews;
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL,
+			CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinColumn(name = "fk_team_id")
+	protected Set<Coach> coaches;
 
 }

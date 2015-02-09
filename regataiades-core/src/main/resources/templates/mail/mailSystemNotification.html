@@ -1,0 +1,21 @@
+Bonjour, 
+
+Nouvelle délégation a été inscrite.
+
+Délégation: $name
+Contact: $contactName $contactSurname $contactEmail  
+
+Equipages inscrits: 
+#set ($map = $crewsCnt )
+#foreach ($mapEntry in $map.entrySet())
+    * $mapEntry.key: $mapEntry.value
+#end
+
+
+
+Comité de pilotage des Régataïades
+
+Tél : +33(0)9.54.01.48.10
+Email : contact@regataiades.fr
+Club Université Nantes Aviron (UNA)
+2 rue de la Houssinière 44300 NANTES

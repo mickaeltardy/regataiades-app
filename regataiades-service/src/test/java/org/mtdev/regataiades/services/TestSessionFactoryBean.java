@@ -1,4 +1,4 @@
-package org.mtdev.regataiades.config;
+package org.mtdev.regataiades.services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +12,13 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.stereotype.Component;
 
 @Component
-@Profile("dev")
-public class SessionFactoryBean extends LocalSessionFactoryBean {
+@Profile("test")
+public class TestSessionFactoryBean extends LocalSessionFactoryBean {
 
 	@Autowired
 	protected DataSource mDataSource;
 
-	public SessionFactoryBean() {
+	public TestSessionFactoryBean() {
 
 		this.setPackagesToScan(getPackagesToScan());
 		this.setHibernateProperties(getHibernateProperties());

@@ -60,15 +60,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// this.serviceConfig(http);
 		// this.commonConfig(http);
-		http.authorizeRequests().antMatchers("/**").authenticated().and()
-				.httpBasic().authenticationEntryPoint(mEmptyAEP).and()
-				.formLogin().successHandler(mAuthenticationSuccessHandler)
-				.and().authorizeRequests().antMatchers("/services/**")
-				.authenticated().and().httpBasic()
-				.authenticationEntryPoint(mErrorAEP).and().formLogin()
-				.successHandler(mAuthenticationSuccessHandler).and().logout()
-				.addLogoutHandler(mLogoutSuccessHandler).and();
-
+		/*
+		 * http.authorizeRequests().antMatchers("/**").authenticated().and()
+		 * .httpBasic().authenticationEntryPoint(mEmptyAEP).and()
+		 * .formLogin().successHandler(mAuthenticationSuccessHandler)
+		 * .and().authorizeRequests().antMatchers("/services/**")
+		 * .authenticated().and().httpBasic()
+		 * .authenticationEntryPoint(mErrorAEP).and().formLogin()
+		 * .successHandler(mAuthenticationSuccessHandler).and().logout()
+		 * .addLogoutHandler(mLogoutSuccessHandler).and();
+		 */
+		http.authorizeRequests().anyRequest().permitAll().and().csrf().disable();
 	}
 
 }
