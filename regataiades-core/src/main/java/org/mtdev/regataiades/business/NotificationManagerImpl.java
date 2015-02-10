@@ -90,7 +90,10 @@ public class NotificationManagerImpl implements NotificationManager {
 				+ lSubject, lOutput.toString());
 
 		mMailManager.sendMail("mishgunn@gmail.com",
-				"[Regataiades] Novelle inscription", lSystemOutput.toString());
+				"[Regataiades] Nouvelle inscription", lSystemOutput.toString());
+		
+		mMailManager.sendMail("inscription@regataiades.fr",
+				"[Regataiades] Nouvelle inscription", lSystemOutput.toString());
 
 		return true;
 	}

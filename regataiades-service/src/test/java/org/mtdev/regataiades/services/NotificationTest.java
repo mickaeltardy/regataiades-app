@@ -1,8 +1,6 @@
 package org.mtdev.regataiades.services;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.mtdev.regataiades.business.interfaces.NotificationManager;
@@ -76,11 +74,7 @@ public class NotificationTest extends
 		mNotificationManager.notifyFirstRegistration(lTeam);
 		mNotificationManager.setLanguage("en");
 		mNotificationManager.notifyFirstRegistration(lTeam);
-		
-		
 
 	}
 
-	
-	
 }

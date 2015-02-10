@@ -40,12 +40,15 @@ public class RegistrationService {
 		boolean lResult = false;
 		if ((Boolean) verify(pRequest)) {
 
+			
 			User lUser = mUserManager.createUser(pRequest);
 
+			
 			if (lUser != null) {
 				Team lTeam = mRegistrationManager.performRegistration(lUser,
 						pRequest);
 				if (lTeam != null) {
+					lUser = mDataProcessor.retrieveObject(pRequest, "user", User.class);
 					
 					mNotificationManager.setLanguage(pLang);
 					mNotificationManager.notifyAccountCreation(lUser, lTeam);

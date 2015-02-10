@@ -57,10 +57,7 @@ public class UsersManagerImpl implements UsersManager {
 		return null;
 	}
 
-	/**
-	 * FIXME Passwords are stored as is. This happens because of the bad
-	 * management of notifications
-	 */
+	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public User createUser(Object pData) {
@@ -68,7 +65,7 @@ public class UsersManagerImpl implements UsersManager {
 		User lUser = mDataProcessor.retrieveObject(pData, "user", User.class);
 		if (lUser != null && !StringUtils.isEmpty(lUser.getPassword())
 				&& !StringUtils.isEmpty(lUser.getLogin())) {
-
+			lUser.setPassword(Toolbox.md5Spring(lUser.getPassword()));
 			lResult = mUserDao.create(lUser);
 			if (lResult) {
 				lUser = mUserDao.findUserByLogin(lUser.getLogin());
