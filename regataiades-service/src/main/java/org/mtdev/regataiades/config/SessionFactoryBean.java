@@ -50,7 +50,7 @@ public class SessionFactoryBean extends LocalSessionFactoryBean {
 		 * lProps.put("hibernate.connection.password", "");
 		 */
 		lProps.put("hibernate.show_sql", "true");
-		lProps.put("hibernate.hbm2ddl.auto", "create");
+		lProps.put("hibernate.hbm2ddl.auto", "update");
 		/* lProps.put("hibernate.connection.autocommit", "false"); */
 		/*
 		 * lProps.put("hibernate.transaction.flush_before_completion", "false");
