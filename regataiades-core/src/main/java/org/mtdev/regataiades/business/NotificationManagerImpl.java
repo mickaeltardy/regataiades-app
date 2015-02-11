@@ -92,7 +92,7 @@ public class NotificationManagerImpl implements NotificationManager {
 		mMailManager.sendMail("mishgunn@gmail.com",
 				"[Regataiades] Nouvelle inscription", lSystemOutput.toString());
 		
-		mMailManager.sendMail("inscription@regataiades.fr",
+		mMailManager.sendMail("inscriptions@regataiades.fr",
 				"[Regataiades] Nouvelle inscription", lSystemOutput.toString());
 
 		return true;
