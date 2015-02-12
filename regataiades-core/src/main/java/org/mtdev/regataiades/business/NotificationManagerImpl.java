@@ -59,7 +59,7 @@ public class NotificationManagerImpl implements NotificationManager {
 	public boolean notifyFirstRegistration(Team pTeam) {
 
 		Map<Object, Object> lContext = new HashMap<Object, Object>();
-		lContext.put("payementLabel", "Inscription équipe " + pTeam.getName());
+		lContext.put("payementLabel", "Regataiades Equipe " + pTeam.getName());
 		lContext.put("invited", pTeam.isInvited());
 		lContext.put("name", pTeam.getName());
 		lContext.put("contactName", pTeam.getContactName());

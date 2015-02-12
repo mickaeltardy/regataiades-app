@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import antlr.build.Tool;
-
 @Controller
 @RequestMapping("/registration")
 @Transactional
@@ -37,7 +35,7 @@ public class RegistrationService {
 	@RequestMapping("/registrate")
 	public @ResponseBody Object registrate(@RequestBody Object pRequest,
 			@RequestParam(value = "lang", defaultValue = "fr") String pLang) {
-		boolean lResult = false;
+		
 		if ((Boolean) verify(pRequest)) {
 
 			
