@@ -11,6 +11,7 @@ import org.mtdev.regataiades.dao.interfaces.TeamDao;
 import org.mtdev.regataiades.model.Athlete;
 import org.mtdev.regataiades.model.Crew;
 import org.mtdev.regataiades.model.Team;
+import org.mtdev.regataiades.services.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.annotation.Rollback;

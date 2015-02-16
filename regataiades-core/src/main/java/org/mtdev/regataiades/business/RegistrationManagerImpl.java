@@ -5,6 +5,7 @@ import java.util.Map;
 import org.mtdev.regataiades.business.interfaces.DataProcessor;
 import org.mtdev.regataiades.business.interfaces.RegistrationManager;
 import org.mtdev.regataiades.dao.impls.EntityDaoImpl;
+import org.mtdev.regataiades.dao.interfaces.EntityDao;
 import org.mtdev.regataiades.dao.interfaces.TeamDao;
 import org.mtdev.regataiades.model.Athlete;
 import org.mtdev.regataiades.model.Coach;
@@ -27,15 +28,15 @@ public class RegistrationManagerImpl implements RegistrationManager {
 
 	@Autowired
 	@Qualifier("coachDaoImpl")
-	protected EntityDaoImpl<Coach> mCoachDao;
+	protected EntityDao<Coach> mCoachDao;
 
 	@Autowired
 	@Qualifier("crewDaoImpl")
-	protected EntityDaoImpl<Crew> mCrewDao;
+	protected EntityDao<Crew> mCrewDao;
 
 	@Autowired
 	@Qualifier("athleteDaoImpl")
-	protected EntityDaoImpl<Athlete> mAthleteDao;
+	protected EntityDao<Athlete> mAthleteDao;
 
 	@Autowired
 	protected DataProcessor mDataProcessor;

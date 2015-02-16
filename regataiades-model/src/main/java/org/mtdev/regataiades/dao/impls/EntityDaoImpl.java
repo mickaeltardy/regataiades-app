@@ -114,7 +114,7 @@ public abstract class EntityDaoImpl<T> implements EntityDao<T> {
 	}
 
 	@SuppressWarnings("rawtypes")
-	protected Class getEntityBeanType() {
+	public Class getEntityBeanType() {
 		return (Class<?>) ((ParameterizedType) getClass()
 				.getGenericSuperclass()).getActualTypeArguments()[0];
 	}
