@@ -24,16 +24,16 @@ import org.mtdev.regataiades.config.AppConfig;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-@SpringAnnotationConfiguration(classes = { AppConfig.class })
-@SpringWebConfiguration
+//@SpringAnnotationConfiguration(classes = { AppConfig.class })
+//@SpringWebConfiguration
 public class AppTest 
-extends Arquillian 
+//extends Arquillian 
 {
-
+/*
 	@ArquillianResource
 	URL url;
 
-	@Deployment
+	@Deployment(testable = false)
 	@OverProtocol("Servlet 3.0")
 	public static WebArchive createTestArchive() {
 		WebArchive lArchive = ShrinkWrap.create(WebArchive.class, "test.war")
@@ -81,5 +81,5 @@ extends Arquillian
 		Assert.assertNotNull(url);
 
 	}
-	
+	*/
 }
