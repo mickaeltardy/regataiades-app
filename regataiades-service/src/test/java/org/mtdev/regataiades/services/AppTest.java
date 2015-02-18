@@ -24,12 +24,12 @@ import org.mtdev.regataiades.config.AppConfig;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-//@SpringAnnotationConfiguration(classes = { AppConfig.class })
-//@SpringWebConfiguration
+@SpringAnnotationConfiguration(classes = { AppConfig.class })
+@SpringWebConfiguration
 public class AppTest 
-//extends Arquillian 
+extends Arquillian 
 {
-/*
+
 	@ArquillianResource
 	URL url;
 
@@ -81,5 +81,5 @@ public class AppTest
 		Assert.assertNotNull(url);
 
 	}
-	*/
+
 }

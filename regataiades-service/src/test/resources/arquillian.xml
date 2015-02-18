@@ -7,7 +7,7 @@
 	<container qualifier="jbossas-embedded" default="true">
 		<configuration>
 			<property name="jbossHome">target/jboss-as-7.1.1.Final</property>
-			<property name="javaVmArguments">-Xmx2048m</property>
+			<property name="javaVmArguments">-Xmx512m</property>
 			<property name="managementAddress">localhost</property>
 		</configuration>
 	</container>
