@@ -6,18 +6,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
-public class AuthenticationSuccessHandler extends
-		SimpleUrlAuthenticationSuccessHandler {
+public class AuthenticationFailureHandler extends
+		SimpleUrlAuthenticationFailureHandler {
 
+	
+	
 	@Override
-	public void onAuthenticationSuccess(HttpServletRequest pRequest,
-			HttpServletResponse pResponse, Authentication pAuthentication)
+	public void onAuthenticationFailure(HttpServletRequest pRequest,
+			HttpServletResponse pResponse, AuthenticationException pException)
 			throws IOException, ServletException {
-		User lUserDetails = (User) (pAuthentication.getPrincipal());
 		pResponse.addHeader("Access-Control-Allow-Origin", "*");
 		pResponse.addHeader("Access-Control-Allow-Methods",
 				"POST, GET, OPTIONS, DELETE");
@@ -26,7 +26,8 @@ public class AuthenticationSuccessHandler extends
 				"Access-Control-Allow-Headers",
 				"x-requested-with, Content-Type, origin, authorization, accept, client-security-token");
 		pResponse.getWriter().println(
-				"{\"status\": \"success\", \"username\" : \""
-						+ lUserDetails.getUsername() + "\"}");
+				"{\"status\": \"failure\", \"details\" : \"auth failure\"}");
 	}
+
+
 }

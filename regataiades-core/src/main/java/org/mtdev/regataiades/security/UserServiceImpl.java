@@ -23,7 +23,6 @@ public class UserServiceImpl implements UserDetailsService {
 	protected UserDao mUserDao;
 
 	public UserServiceImpl() {
-		System.out.println("Test");
 	}
 
 	public UserDetails loadUserByUsername(String pUsername)

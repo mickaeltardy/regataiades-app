@@ -10,7 +10,6 @@ import org.mtdev.regataiades.security.UserServiceImpl;
 import org.mtdev.regataiades.tools.Toolbox;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.test.context.ActiveProfiles;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeTest;

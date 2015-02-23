@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
@@ -25,11 +26,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected AuthenticationSuccessHandler mAuthenticationSuccessHandler;
 
 	@Autowired
-	protected LogoutHandler mLogoutSuccessHandler;
+	protected AuthenticationFailureHandler mAuthenticationFailureHandler;
 
 	@Autowired
-	@Qualifier("errorAEP")
-	protected AuthenticationEntryPoint mErrorAEP;
+	protected LogoutHandler mLogoutSuccessHandler;
 
 	@Autowired
 	@Qualifier("emptyAEP")
@@ -40,7 +40,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected UserDetailsService userDetailsService() {
-		// TODO Auto-generated method stub
 		return mUserDetailsService;
 	}
 
@@ -56,29 +55,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	/**
 	 * TODO Split http confs
 	 */
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		// this.serviceConfig(http);
-		// this.commonConfig(http);
-		/*
-		 * http.authorizeRequests().antMatchers("/**").authenticated().and()
-		 * .httpBasic().authenticationEntryPoint(mEmptyAEP).and()
-		 * .formLogin().successHandler(mAuthenticationSuccessHandler)
-		 * .and().authorizeRequests().antMatchers("/services/**")
-		 * .authenticated().and().httpBasic()
-		 * .authenticationEntryPoint(mErrorAEP).and().formLogin()
-		 * .successHandler(mAuthenticationSuccessHandler).and().logout()
-		 * .addLogoutHandler(mLogoutSuccessHandler).and();
-		 */
-		//http.authorizeRequests().anyRequest().permitAll().and().csrf().disable();
-		 http.authorizeRequests().antMatchers("/**").authenticated().and()
-		  .httpBasic().authenticationEntryPoint(mEmptyAEP).and()
-		  .formLogin().successHandler(mAuthenticationSuccessHandler)
-		  .and().authorizeRequests().antMatchers("/services/**")
-		  .authenticated().and().httpBasic()
-		  .authenticationEntryPoint(mErrorAEP).and().formLogin()
-		  .successHandler(mAuthenticationSuccessHandler).and().logout()
-		 .addLogoutHandler(mLogoutSuccessHandler).and().csrf().disable();
+
+		http.authorizeRequests().antMatchers("/**").permitAll().and()
+				.httpBasic().authenticationEntryPoint(mEmptyAEP).and()
+				.formLogin().successHandler(mAuthenticationSuccessHandler)
+				.failureHandler(mAuthenticationFailureHandler).and()
+				.authorizeRequests().antMatchers("/registration/**")
+				.authenticated().and().httpBasic().and().exceptionHandling()
+				.accessDeniedPage("/errors/403").and().formLogin()
+				.successHandler(mAuthenticationSuccessHandler).and().logout()
+				.logoutSuccessUrl("/auth/logout")
+				.addLogoutHandler(mLogoutSuccessHandler).and().formLogin()
+				.and().csrf().disable();
+
 	}
 
 }

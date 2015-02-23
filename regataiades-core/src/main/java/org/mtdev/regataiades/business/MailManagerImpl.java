@@ -21,7 +21,7 @@ public class MailManagerImpl implements MailManager {
 		final String lUsername = "support@una-club.fr";
 		final String lPassword = "unanantes2.0";
 
-		String lSender = "contact@regataiades.fr";
+		String lSender = "inscriptions@regataiades.fr";
 		Properties lProps = new Properties();
 		lProps.put("mail.smtp.auth", "true");
 		lProps.put("mail.smtp.starttls.enable", "true");

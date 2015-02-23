@@ -10,14 +10,18 @@ public class SpringSecurityInitializer
 extends AbstractSecurityWebApplicationInitializer 
 {
 
+	
+	
+
 	@Override
 	protected void beforeSpringSecurityFilterChain(
 			ServletContext pServletContext) {
-		super.beforeSpringSecurityFilterChain(pServletContext);
-		
 		FilterRegistration.Dynamic corsFilter = pServletContext.addFilter("corsFilter", new SimpleCORSFilter());	
         corsFilter.addMappingForUrlPatterns(null, true, "/*");
+		super.beforeSpringSecurityFilterChain(pServletContext);
+		
 
+		
 	}
 	
 	

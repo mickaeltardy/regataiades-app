@@ -14,6 +14,10 @@ public class EmptyAuthenticationEntryPoint implements AuthenticationEntryPoint {
 	public void commence(HttpServletRequest pRequest,
 			HttpServletResponse pResponse, AuthenticationException pException)
 			throws IOException, ServletException {
+		
+        HttpServletResponse httpResponse = (HttpServletResponse) pResponse;
+        pResponse.setContentType("application/json");
+        httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN, "Access Denied");
 
 	}
 

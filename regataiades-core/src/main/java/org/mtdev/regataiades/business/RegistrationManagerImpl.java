@@ -4,7 +4,6 @@ import java.util.Map;
 
 import org.mtdev.regataiades.business.interfaces.DataProcessor;
 import org.mtdev.regataiades.business.interfaces.RegistrationManager;
-import org.mtdev.regataiades.dao.impls.EntityDaoImpl;
 import org.mtdev.regataiades.dao.interfaces.EntityDao;
 import org.mtdev.regataiades.dao.interfaces.TeamDao;
 import org.mtdev.regataiades.model.Athlete;

@@ -112,6 +112,7 @@ public class RegistrationTest extends
 		mTeamDao.create(lTeam);
 	}
 
+	@Rollback(false)
 	@Test(dependsOnMethods = "saveFilledTeam")
 	public void checkSavedFilledTeam() {
 		Team lTeam = mTeamDao.findById(2);
