@@ -56,7 +56,7 @@ public class AccessTool {
 		Authentication lAuth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		try {
-			User lUserDetailsImpl = (User) getUserDetails();
+			User lUserDetailsImpl = (User) lAuth.getDetails();
 			if (lAuth != null)
 				return lUserDetailsImpl.getUsername();
 		} catch (Exception lE) {

@@ -5,13 +5,12 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.mtdev.regataiades.business.interfaces.RegistrationManager;
 import org.mtdev.regataiades.config.AppConfig;
 import org.mtdev.regataiades.dao.interfaces.TeamDao;
+import org.mtdev.regataiades.dao.interfaces.UserDao;
 import org.mtdev.regataiades.model.Athlete;
 import org.mtdev.regataiades.model.Crew;
 import org.mtdev.regataiades.model.Team;
-import org.mtdev.regataiades.services.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.annotation.Rollback;
@@ -27,40 +26,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @ContextConfiguration(classes = { AppConfig.class })
 @WebAppConfiguration
 @ActiveProfiles("test")
-public class RegistrationTest extends
+public class DaosTest extends
 		AbstractTransactionalTestNGSpringContextTests {
-
-	private static String sInput = "{" + "\"totalPrice\":\"40 Euros\","
-			+ "\"user\":{" + "\"login\":\"email@xxx.com\","
-			+ "\"password\":\"pass\"," + "\"passwordConfirmation\":\"pass\""
-			+ "}," + "\"team\":{" + "\"contactName\":\"Name\","
-			+ "\"contactSurname\":\"surname\","
-			+ "\"contactTelephone\":\"123456\"," + "\"name\":\"Club\","
-			+ "\"address\":\"addr\"," + "\"zipCode\":\"12345\","
-			+ "\"city\":\"City\"," + "\"country\":\"Country\","
-			+ "\"coaches\":" + "[" + "{" + "\"$$hashKey\":" + "\"object:3\","
-			+ "\"name\":\"a\"," + "\"surname\":\"b\"," + "\"sex\":\"M\""
-			+ "}]," + "\"crews\":[" + "{"
-			+ "\"$$hashKey\":\"object:5\",\"type\":\"M4x\"," + "\"members\":"
-			+ "[{\"sex\":\"M\",\"$$hashKey\":\"object:11\"},"
-			+ "{\"sex\":\"M\",\"$$hashKey\":\"object:12\"},"
-			+ "{\"sex\":\"M\",\"$$hashKey\":\"object:13\"},"
-			+ "{\"sex\":\"M\",\"$$hashKey\":\"object:14\"}]}]}}";
-
-	@Autowired
-	protected RegistrationManager mRegistrationManager;
-	@Autowired
-	protected RegistrationService mRegistrationService;
 
 	@Autowired
 	@Qualifier("teamDaoImpl")
 	protected TeamDao mTeamDao;
+	@Autowired
+	@Qualifier("userDaoImpl")
+	protected UserDao mUserDao;
 
 	@Test
 	public void testSpringInit() {
 
-		Assert.assertNotNull(mRegistrationManager);
-		Assert.assertNotNull(mRegistrationService);
+		Assert.assertNotNull(mTeamDao);
+		Assert.assertNotNull(mUserDao);
 	}
 
 	@Test(dependsOnMethods = "testSpringInit")
@@ -104,7 +84,7 @@ public class RegistrationTest extends
 
 			}
 			lCrew.setAthletes(lAthletes);
-			lCrew.setCategory("x"+j);
+			lCrew.setCategory("x" + j);
 			lCrews.add(lCrew);
 		}
 		lTeam.setCrews(lCrews);
@@ -123,13 +103,13 @@ public class RegistrationTest extends
 	}
 
 	@SuppressWarnings("unchecked")
-	@Test(dependsOnMethods = "checkSavedFilledTeam")
+	@Test(dependsOnMethods = "checkSavedFilledTeam", dataProviderClass = RegistrationDataProvider.class, dataProvider = "getData")
 	@Rollback(false)
-	public void saveTeamFromJson() {
+	public void saveTeamFromJson(String pInput) {
 		ObjectMapper lMapper = new ObjectMapper();
 
 		try {
-			Object lTester = lMapper.readValue(sInput, Object.class);
+			Object lTester = lMapper.readValue(pInput, Object.class);
 
 			Team lTeam = lMapper.readValue(lMapper
 					.writeValueAsString(((Map<Object, Object>) lTester)
@@ -141,6 +121,7 @@ public class RegistrationTest extends
 		}
 	}
 
+	@Rollback(false)
 	@Test(dependsOnMethods = "saveTeamFromJson")
 	public void checkTeamSavedFromJson() {
 		Team lTeam = mTeamDao.findById(3);
@@ -153,4 +134,5 @@ public class RegistrationTest extends
 		Assert.assertEquals(lTeam.getCoaches().size(), 1);
 
 	}
+
 }

@@ -6,6 +6,8 @@ public interface UsersManager {
 
 	public boolean checkUserExistence(String pEmail);
 
+	public User getUser(String pEmail);
+
 	public User createUser(String pLogin, String pPassword, String pName,
 			String pSurname, String pTelephone);
 

@@ -52,12 +52,20 @@ public class NotificationManagerImpl implements NotificationManager {
 		return true;
 	}
 
+
+	@Override
+	public boolean notifyRegistrationUpdate(Team pTeam) {
+		return notifyRegistrationOperation(pTeam, true);
+	}
+	
 	/**
 	 * FIXME Put price calc elsewhere
 	 */
 	@Override
 	public boolean notifyFirstRegistration(Team pTeam) {
-
+		return notifyRegistrationOperation(pTeam, false);
+	}
+	public boolean notifyRegistrationOperation(Team pTeam, boolean pUpdate) {
 		Map<Object, Object> lContext = new HashMap<Object, Object>();
 		lContext.put("payementLabel", "Regataiades Equipe " + pTeam.getName());
 		lContext.put("invited", pTeam.isInvited());
@@ -80,12 +88,14 @@ public class NotificationManagerImpl implements NotificationManager {
 
 		lContext.put("crewsCnt", lCrewsCnt);
 
+		String lTemplate = (pUpdate) ? "mailUpdateNotification" : "mailCreationNotification";
+		
 		Writer lOutput = mDataRenderer.renderData(lContext,
-				"/templates/mail/mailNotification." + mLang + ".html");
+				"/templates/mail/"+lTemplate+"." + mLang + ".html");
 		Writer lSystemOutput = mDataRenderer.renderData(lContext,
 				"/templates/mail/mailSystemNotification.html");
 
-		String lSubject = getSubject("firstRegistration");
+		String lSubject = getSubject((pUpdate) ? "updateRegistration" :"firstRegistration");
 		mMailManager.sendMail(pTeam.getContactEmail(), "[Regataiades] "
 				+ lSubject, lOutput.toString());
 
@@ -108,7 +118,7 @@ public class NotificationManagerImpl implements NotificationManager {
 			} else {
 				return "Your user account";
 			}
-		} else if (pLabel.compareTo("firstRegistration") == 0) {
+		} else if (pLabel.compareTo("firstRegistration") == 0 || pLabel.compareTo("updateRegistration") == 0) {
 			if (isFrench()) {
 				return "Votre inscription à la régate";
 			} else {

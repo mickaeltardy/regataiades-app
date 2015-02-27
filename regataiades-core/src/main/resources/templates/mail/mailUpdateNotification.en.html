@@ -1,0 +1,15 @@
+Hello $contactName $contactSurname, You have just updated your
+registration for the Régataïades rowing regatta, an international
+university competition which will take place the 9th and 10th May 2015
+in Nantes, France. Registered team: $name Registered crews: #set ($map =
+$crewsCnt ) #foreach ($mapEntry in $map.entrySet()) * $mapEntry.key:
+$mapEntry.value #end #if( !$invited ) The total cost is $cost euros. The
+last thing to do now is to make payment using one of the following
+means: * Bank transfer specifying "$payementLabel" (Bank details are
+available here
+http://regataiades.fr/registration/shared/img/rib_una.jpg) * Bank check
+for Université Nantes Aviron #end Please note that with no payment the
+day of the regatta you will not be allowed to participate. Feel free to
+contact us for any information. Kind regards, Régataïades management
+team Tél : +33(0)9.54.01.48.10 Email : inscription@regataiades.fr Club
+Université Nantes Aviron (UNA) 2 rue de la Houssinière 44300 NANTES

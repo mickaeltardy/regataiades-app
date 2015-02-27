@@ -23,18 +23,22 @@ public class UsersManagerImpl implements UsersManager {
 
 	@Override
 	public boolean checkUserExistence(String pLogin) {
-		boolean lResult = false;
+		return (getUser(pLogin) != null);
+	}
+
+	@Override
+	public User getUser(String pLogin) {
 
 		try {
 			if (!StringUtils.isEmpty(pLogin)) {
 				User lUser = mUserDao.findUserByLogin(pLogin);
 
-				lResult = (lUser != null);
+				return lUser;
 			}
 		} catch (Exception lE) {
 			lE.printStackTrace();
 		}
-		return lResult;
+		return null;
 	}
 
 	@Override
@@ -57,7 +61,6 @@ public class UsersManagerImpl implements UsersManager {
 		return null;
 	}
 
-	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public User createUser(Object pData) {

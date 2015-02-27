@@ -2,6 +2,7 @@ package org.mtdev.regataiades.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
@@ -14,12 +15,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
+import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 
-@Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-@Import(value = SecurityHandlers.class)
+//@Configuration
+//@EnableWebSecurity
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@Import(value = SecurityHandlers.class)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -49,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		Md5PasswordEncoder passwordEncoder = new Md5PasswordEncoder();
 		auth.userDetailsService(mUserDetailsService).passwordEncoder(
 				passwordEncoder);
-
+		
 	}
 
 	/**
@@ -69,8 +72,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.successHandler(mAuthenticationSuccessHandler).and().logout()
 				.logoutSuccessUrl("/auth/logout")
 				.addLogoutHandler(mLogoutSuccessHandler).and().formLogin()
-				.and().csrf().disable();
+				.and().csrf().disable().rememberMe().rememberMeServices(rememberMeServices()).key("password");;
 
 	}
+	@Bean
+    public RememberMeServices rememberMeServices() {
+        TokenBasedRememberMeServices rememberMeServices = new TokenBasedRememberMeServices("password", mUserDetailsService);
+        rememberMeServices.setCookieName("cookieName");
+        rememberMeServices.setParameter("rememberMe");
+        return rememberMeServices;
+    }
 
 }

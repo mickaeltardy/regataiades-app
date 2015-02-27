@@ -3,6 +3,8 @@ package org.mtdev.regataiades.tools;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.util.DigestUtils;
 
 public abstract class Toolbox {
@@ -59,5 +61,16 @@ public abstract class Toolbox {
 		}
 
 		return false;
+	}
+	
+	public static HttpServletResponse enrichResponse(HttpServletResponse pResponse){
+		pResponse.addHeader("Access-Control-Allow-Origin", "*");
+		pResponse.addHeader("Access-Control-Allow-Methods",
+				"POST, GET, OPTIONS, DELETE");
+		pResponse.addHeader("Access-Control-Max-Age", "3600");
+		pResponse.addHeader(
+				"Access-Control-Allow-Headers",
+				"x-requested-with, Content-Type, origin, authorization, accept, client-security-token");
+		return pResponse;
 	}
 }

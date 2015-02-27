@@ -17,5 +17,7 @@ public interface RegistrationManager {
 	public Crew addCrew(Team pTeam, Object pData);
 
 	public Team performRegistration(User pUser, Object pRequest);
+	
+	public Team getUserTeam(User pUser);
 
 }

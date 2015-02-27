@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.mtdev.regataiades.tools.Toolbox;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -18,13 +19,7 @@ public class AuthenticationSuccessHandler extends
 			HttpServletResponse pResponse, Authentication pAuthentication)
 			throws IOException, ServletException {
 		User lUserDetails = (User) (pAuthentication.getPrincipal());
-		pResponse.addHeader("Access-Control-Allow-Origin", "*");
-		pResponse.addHeader("Access-Control-Allow-Methods",
-				"POST, GET, OPTIONS, DELETE");
-		pResponse.addHeader("Access-Control-Max-Age", "3600");
-		pResponse.addHeader(
-				"Access-Control-Allow-Headers",
-				"x-requested-with, Content-Type, origin, authorization, accept, client-security-token");
+		pResponse = Toolbox.enrichResponse(pResponse);
 		pResponse.getWriter().println(
 				"{\"status\": \"success\", \"username\" : \""
 						+ lUserDetails.getUsername() + "\"}");

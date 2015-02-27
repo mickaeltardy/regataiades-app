@@ -38,7 +38,7 @@ public class Crew {
 
 	@OneToMany(
 	// mappedBy = "crew",
-	fetch = FetchType.LAZY, cascade = { CascadeType.ALL, CascadeType.PERSIST,
+	fetch = FetchType.EAGER, cascade = { CascadeType.ALL, CascadeType.PERSIST,
 			CascadeType.MERGE })
 	@JoinColumn(name = "fk_crew_id")
 	protected Set<Athlete> athletes;

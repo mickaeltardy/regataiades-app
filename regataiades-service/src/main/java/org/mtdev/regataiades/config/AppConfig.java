@@ -1,7 +1,7 @@
 package org.mtdev.regataiades.config;
 
 import org.hibernate.SessionFactory;
-import org.mtdev.regataiades.security.SecurityConfig;
+import org.mtdev.regataiades.security.StatelessAuthenticationSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableTransactionManagement
 @Configuration
 @ComponentScan({ "org.mtdev.regataiades.*" })
-@Import({ SecurityConfig.class })
+@Import({ StatelessAuthenticationSecurityConfig.class })
 public class AppConfig {
 	@Autowired
 	private SessionFactory mSessionFactory;

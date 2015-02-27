@@ -60,7 +60,7 @@ public class RegistrationManagerImpl implements RegistrationManager {
 
 		if (pCrew != null && validateAthleteData(pData)) {
 			Athlete lAthlete = new Athlete();
-			//lAthlete.setCrew(pCrew);
+			// lAthlete.setCrew(pCrew);
 			boolean lResult = mAthleteDao.create(lAthlete);
 
 			if (lResult)
@@ -75,7 +75,7 @@ public class RegistrationManagerImpl implements RegistrationManager {
 		if (pTeam != null && validateCoachData(pData)) {
 
 			Coach lCoach = new Coach();
-			//lCoach.setTeam(pTeam);
+			// lCoach.setTeam(pTeam);
 
 			boolean lResult = mCoachDao.create(lCoach);
 			if (lResult)
@@ -90,7 +90,7 @@ public class RegistrationManagerImpl implements RegistrationManager {
 
 		if (pTeam != null && validateCrewData(pData)) {
 			Crew lCrew = new Crew();
-			//lCrew.setTeam(pTeam);
+			// lCrew.setTeam(pTeam);
 
 			boolean lResult = mCrewDao.create(lCrew);
 			if (lResult)
@@ -109,11 +109,17 @@ public class RegistrationManagerImpl implements RegistrationManager {
 			lTeam.setUser(pUser);
 
 			lResult = mTeamDao.create(lTeam);
-			if(lResult)
+			if (lResult)
 				return lTeam;
 
 		}
 		return null;
+	}
+
+	@Override
+	public Team getUserTeam(User pUser) {
+
+		return mTeamDao.findTeamByUser(pUser);
 	}
 
 	protected boolean validateTeamData(Map<Object, Object> pData) {

@@ -10,5 +10,7 @@ public interface NotificationManager {
 	boolean notifyFirstRegistration(Team pTeam);
 
 	boolean notifyAccountCreation(User pUser, Team pTeam);
+	
+	boolean notifyRegistrationUpdate(Team pTeam);
 
 }
