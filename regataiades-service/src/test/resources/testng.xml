@@ -1,0 +1,36 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+ 
+<suite name="TestAll">
+ 
+	<test name="Daos">
+		<classes>
+			<class name="org.mtdev.regataiades.services.DaosTest" />
+		</classes>
+	</test>
+ 	<test name="Auth">
+		<classes> 
+			<class name="org.mtdev.regataiades.services.AuthenticationTest" />
+		</classes>
+	</test>
+ 	<test name="AuthSpring">
+		<classes>
+			<class name="org.mtdev.regataiades.services.AuthSpringAwareTest" />
+		</classes>
+	</test>
+ 	<test name="Notif">
+		<classes>
+			<class name="org.mtdev.regataiades.services.NotificationTest" />
+		</classes>
+	</test>
+ 	<test name="Reg">
+		<classes>
+			<class name="org.mtdev.regataiades.services.RegistrationServiceTest" />
+		</classes>
+	</test>
+ 	<test name="App">
+		<classes>
+			<class name="org.mtdev.regataiades.services.AppTest" />
+		</classes>
+	</test>
+
+</suite>

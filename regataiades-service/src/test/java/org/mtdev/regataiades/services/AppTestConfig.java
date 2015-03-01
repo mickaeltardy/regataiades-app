@@ -9,6 +9,7 @@ import org.mtdev.regataiades.model.Athlete;
 import org.mtdev.regataiades.model.Coach;
 import org.mtdev.regataiades.model.Crew;
 import org.mtdev.regataiades.security.SecurityConfig;
+import org.mtdev.regataiades.security.StatelessAuthenticationSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -26,7 +27,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 @EnableTransactionManagement
 @Configuration
-@Import({ SecurityConfig.class })
+@Import({ StatelessAuthenticationSecurityConfig.class })
 @ComponentScan(basePackages = "org.mtdev.regataiades.*", excludeFilters = {
 		@Filter(type = FilterType.ANNOTATION, value = Repository.class),
 		@Filter(type = FilterType.ANNOTATION, value = Configuration.class) })
