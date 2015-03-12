@@ -8,7 +8,6 @@ import org.mtdev.regataiades.dao.interfaces.UserDao;
 import org.mtdev.regataiades.model.Athlete;
 import org.mtdev.regataiades.model.Coach;
 import org.mtdev.regataiades.model.Crew;
-import org.mtdev.regataiades.security.SecurityConfig;
 import org.mtdev.regataiades.security.StatelessAuthenticationSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
