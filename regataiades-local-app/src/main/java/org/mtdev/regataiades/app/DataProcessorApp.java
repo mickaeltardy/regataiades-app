@@ -11,12 +11,12 @@ public class DataProcessorApp {
 
 	public static void main(String... pArgs) {
 		try {
-			if (pArgs != null && pArgs.length >= 2) {
-				long lStandBy = (pArgs.length == 3) ? Long.parseLong(pArgs[2])
+			if (pArgs != null && pArgs.length >= 3) {
+				long lStandBy = (pArgs.length == 4) ? Long.parseLong(pArgs[3])
 						: 60000 * 5;
 				while (true) {
 
-					DataCollector lDataCollector = new DataCollector(pArgs[0]);
+					DataCollector lDataCollector = new DataCollector(pArgs[0], pArgs[2]);
 					Object lEvents = lDataCollector.parseRacesSheet();
 
 					DataUploader lDataUploader = new DataUploader();

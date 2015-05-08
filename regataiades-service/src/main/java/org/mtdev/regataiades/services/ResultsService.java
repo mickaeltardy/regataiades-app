@@ -37,10 +37,12 @@ public class ResultsService {
 		return null;
 	}
 
-	@RequestMapping("/events")
+	@RequestMapping("/events/{raceType}")
 	@ResponseView(Views.Public.class)
-	public @ResponseBody Object retrieveEventsList() {
-		Collection<Event> lList = mEventDao.findEventsByType(1);
+	public @ResponseBody Object retrieveEventsList(
+			@PathVariable("raceType") String pRaceType) {
+		Collection<Event> lList = mEventDao.findEventsByTypeAndRaceType(1,
+				pRaceType);
 
 		return lList;
 	}
@@ -50,18 +52,21 @@ public class ResultsService {
 		return null;
 	}
 
-	@RequestMapping("/category/{category}")
+	@RequestMapping("/category/{pRaceType}/{category}")
 	@ResponseView(Views.Internal.class)
 	public @ResponseBody Object retrieveCategoryResults(
+			@PathVariable("raceType") String pRaceType,
 			@PathVariable(value = "category") String pBoatCategory) {
-		return mEventDao.findEventsByBoatCategory(pBoatCategory);
+		return mEventDao.findEventsByBoatCategoryAndRaceType(pBoatCategory,
+				pRaceType);
 	}
 
-	@RequestMapping("/category/")
+	@RequestMapping("/category/{pRaceType}")
 	@ResponseView(Views.Internal.class)
-	public @ResponseBody Object retrieveAllCategoriesResults() {
+	public @ResponseBody Object retrieveAllCategoriesResults(
+			@PathVariable("raceType") String pRaceType) {
 
-		return mEventDao.findEventsByType(1);
+		return mEventDao.findEventsByTypeAndRaceType(1, pRaceType);
 	}
 
 	@RequestMapping("/eventResults/{event}")

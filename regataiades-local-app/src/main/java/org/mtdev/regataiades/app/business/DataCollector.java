@@ -19,10 +19,13 @@ import org.springframework.util.StringUtils;
 public class DataCollector {
 
 	protected String mFilePath;
-	private Workbook mWorkbook;
+	protected Workbook mWorkbook;
+	protected String mRaceType;
+	
 
-	public DataCollector(String pFilePath) {
+	public DataCollector(String pFilePath, String pRaceType) {
 		mFilePath = pFilePath;
+		mRaceType = pRaceType;
 	}
 
 	public Object parseRacesSheet() {
@@ -119,6 +122,7 @@ public class DataCollector {
 
 					}
 					lCurrentEvent.setTime(lRowProcessor.getCellValue(3));
+					lCurrentEvent.setRaceType(mRaceType);
 					lCurrentEvent.setStatus(EventStatus.undefined);
 					lCurrentEvent.setSort(lCnt);
 				}

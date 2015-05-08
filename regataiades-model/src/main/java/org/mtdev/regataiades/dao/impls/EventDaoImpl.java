@@ -13,7 +13,7 @@ public class EventDaoImpl extends EntityDaoImpl<Event> implements EventDao {
 
 	@Override
 	public Event findEventByParams(String pEventId, String pEventCategory,
-			String pBoatCategory, String pTime) {
+			String pBoatCategory, String pTime, String pRaceType) {
 
 		Criteria lCriteria = getGenericCriteria();
 		if (pEventId == null)
@@ -32,6 +32,11 @@ public class EventDaoImpl extends EntityDaoImpl<Event> implements EventDao {
 			lCriteria.add(Restrictions.isNull("time"));
 		else
 			lCriteria.add(Restrictions.eq("time", pTime));
+		if (pRaceType
+				== null)
+			lCriteria.add(Restrictions.isNull("raceType"));
+		else
+			lCriteria.add(Restrictions.eq("raceType", pRaceType));
 
 		return this.findItemByCriteria(lCriteria);
 
@@ -55,6 +60,25 @@ public class EventDaoImpl extends EntityDaoImpl<Event> implements EventDao {
 	public Collection<Event> findEventsByBoatCategory(String pBoatCategory) {
 		Criteria lCriteria = getGenericCriteria();
 		lCriteria.add(Restrictions.eq("boatCategory", pBoatCategory));
+		return this.findListByCriteria(lCriteria);
+
+	}
+
+	@Override
+	public Collection<Event> findEventsByTypeAndRaceType(int pType,
+			String pRaceType) {
+		Criteria lCriteria = getGenericCriteria();
+		lCriteria.add(Restrictions.eq("type", pType));
+		lCriteria.add(Restrictions.eq("raceType", pRaceType));
+		return this.findListByCriteria(lCriteria);
+	}
+
+	@Override
+	public Collection<Event> findEventsByBoatCategoryAndRaceType(
+			String pBoatCategory, String pRaceType) {
+		Criteria lCriteria = getGenericCriteria();
+		lCriteria.add(Restrictions.eq("boatCategory", pBoatCategory));
+		lCriteria.add(Restrictions.eq("raceType", pRaceType));
 		return this.findListByCriteria(lCriteria);
 
 	}

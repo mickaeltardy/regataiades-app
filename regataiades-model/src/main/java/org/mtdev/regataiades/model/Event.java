@@ -41,6 +41,9 @@ public class Event {
 	@Column(name = "type")
 	protected int type;
 
+	@Column(name = "raceType")
+	protected String raceType;
+
 	@Column(name = "sort")
 	protected int sort;
 
@@ -61,8 +64,7 @@ public class Event {
 	protected String boatCategory;
 
 	@JsonView(Views.Internal.class)
-	@OneToMany(cascade = CascadeType.ALL,
-	fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SELECT)
 	@JoinColumn(name = "fk_event_id")
 	protected List<Result> results;

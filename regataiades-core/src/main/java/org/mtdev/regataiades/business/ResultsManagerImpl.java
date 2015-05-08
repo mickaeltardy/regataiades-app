@@ -28,7 +28,8 @@ public class ResultsManagerImpl implements ResultsManager {
 			for (Event lEvent : pEvents) {
 				Event lStoredEvent = mEventDao.findEventByParams(
 						lEvent.getEventId(), lEvent.getEventCategory(),
-						lEvent.getBoatCategory(), lEvent.getTime());
+						lEvent.getBoatCategory(), lEvent.getTime(),
+						lEvent.getRaceType());
 				if (lStoredEvent != null) {
 					lStoredEvent = this.updateEvent(lStoredEvent, lEvent);
 
