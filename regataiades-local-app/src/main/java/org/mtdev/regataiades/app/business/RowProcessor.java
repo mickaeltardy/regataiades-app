@@ -34,7 +34,8 @@ public class RowProcessor {
 					&& mCells[3].getType() != CellType.EMPTY
 					&& mCells[4].getType() == CellType.EMPTY
 					&& mCells[5].getType() == CellType.EMPTY
-					&& mCells[6].getType() == CellType.EMPTY) {
+					&& mCells[2].getContents().compareTo("Equipage") != 0
+					&& mCells[3].getContents().compareTo("Parcours") != 0) {
 				return RowTypes.racesTitleRow;
 			}
 		} catch (Exception lE) {

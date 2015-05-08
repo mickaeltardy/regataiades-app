@@ -148,10 +148,10 @@ public class DataCollector {
 				}
 
 			}
-			
-			lCurrentEvent.setStatus(this.getEventStatus(lCurrentEvent));
-			lEvents.add(lCurrentEvent);
-
+			if(lCurrentEvent != null){
+				lCurrentEvent.setStatus(this.getEventStatus(lCurrentEvent));
+				lEvents.add(lCurrentEvent);
+			}
 			lCurrentEvent = null;
 			return lEvents;
 		}

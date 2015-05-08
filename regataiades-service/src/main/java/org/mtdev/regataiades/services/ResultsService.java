@@ -52,7 +52,7 @@ public class ResultsService {
 		return null;
 	}
 
-	@RequestMapping("/category/{pRaceType}/{category}")
+	@RequestMapping("/category/{raceType}/{category}")
 	@ResponseView(Views.Internal.class)
 	public @ResponseBody Object retrieveCategoryResults(
 			@PathVariable("raceType") String pRaceType,
@@ -61,7 +61,7 @@ public class ResultsService {
 				pRaceType);
 	}
 
-	@RequestMapping("/category/{pRaceType}")
+	@RequestMapping("/category/{raceType}")
 	@ResponseView(Views.Internal.class)
 	public @ResponseBody Object retrieveAllCategoriesResults(
 			@PathVariable("raceType") String pRaceType) {
