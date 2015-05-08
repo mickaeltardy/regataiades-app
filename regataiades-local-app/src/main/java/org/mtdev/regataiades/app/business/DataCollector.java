@@ -21,7 +21,6 @@ public class DataCollector {
 	protected String mFilePath;
 	protected Workbook mWorkbook;
 	protected String mRaceType;
-	
 
 	public DataCollector(String pFilePath, String pRaceType) {
 		mFilePath = pFilePath;
@@ -50,7 +49,8 @@ public class DataCollector {
 			try {
 				WorkbookSettings lSettings = new WorkbookSettings();
 				lSettings.setEncoding("ISO8859-1");
-				mWorkbook = Workbook.getWorkbook(new File(pFilePath), lSettings);
+				mWorkbook = Workbook
+						.getWorkbook(new File(pFilePath), lSettings);
 				Sheet lSheet = mWorkbook.getSheet(pSheetName);
 
 				return lSheet;
@@ -148,7 +148,7 @@ public class DataCollector {
 				}
 
 			}
-			if(lCurrentEvent != null){
+			if (lCurrentEvent != null) {
 				lCurrentEvent.setStatus(this.getEventStatus(lCurrentEvent));
 				lEvents.add(lCurrentEvent);
 			}
@@ -163,10 +163,13 @@ public class DataCollector {
 		if (pCurrentEvent != null && pCurrentEvent.getResults() != null) {
 			boolean lStarted = false, lNotFinished = true;
 			for (Result lResult : pCurrentEvent.getResults()) {
-				if (lResult.getTime().compareTo("00:00.000") != 0 && lResult.getTime().compareTo("") != 0) {
+				if (lResult.getTime().compareTo("00:00.000") != 0
+						&& lResult.getTime().compareTo("") != 0) {
 					lStarted = true;
 				}
-				if (lResult.getTime().compareTo("00:00.000") == 0) {
+				if (lResult.getTime().compareTo("00:00.000") == 0
+						&& !StringUtils.isEmpty(lResult.getCrewName())
+						&& lResult.getCrewName().compareTo("0") != 0) {
 					lNotFinished = true;
 				}
 			}
@@ -181,11 +184,11 @@ public class DataCollector {
 		return EventStatus.undefined;
 
 	}
-	
-	public boolean close(){
+
+	public boolean close() {
 
 		mWorkbook.close();
-		
+
 		return true;
 	}
 
