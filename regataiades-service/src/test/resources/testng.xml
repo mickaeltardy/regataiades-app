@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
  
 <suite name="TestAll">
- 
+ <!-- 
 	<test name="Daos">
 		<classes>
 			<class name="org.mtdev.regataiades.services.DaosTest" />
@@ -27,10 +27,5 @@
 			<class name="org.mtdev.regataiades.services.RegistrationServiceTest" />
 		</classes>
 	</test>
- 	<test name="App">
-		<classes>
-			<class name="org.mtdev.regataiades.services.AppTest" />
-		</classes>
-	</test>
-
+-->
 </suite>

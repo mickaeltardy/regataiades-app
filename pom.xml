@@ -9,6 +9,8 @@
 		<module>regataiades-model</module>
 		<module>regataiades-core</module>
 		<module>regataiades-service</module>
+		<module>regataiades-local-app</module>
+		<module>regataiades-commons</module>
 	</modules>
 	<properties>
 		<hibernate.version>4.2.11.Final</hibernate.version>
@@ -32,6 +34,11 @@
 			<dependency>
 				<groupId>org.mtdev.regataiades</groupId>
 				<artifactId>regataiades-model</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mtdev.regataiades</groupId>
+				<artifactId>regataiades-commons</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
