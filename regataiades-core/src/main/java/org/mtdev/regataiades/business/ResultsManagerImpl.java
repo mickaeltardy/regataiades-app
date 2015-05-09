@@ -48,9 +48,9 @@ public class ResultsManagerImpl implements ResultsManager {
 		pDestEvent.setSort(pSourceEvent.getSort());
 
 		if (pSourceEvent.getResults() != null) {
-			List<Result> lMergedResults = this.mergeResults(
-					pDestEvent.getResults(), pSourceEvent.getResults());
-			pDestEvent.setResults(lMergedResults);
+			//List<Result> lMergedResults = this.mergeResults(
+			//		pDestEvent.getResults(), pSourceEvent.getResults());
+			pDestEvent.setResults(pSourceEvent.getResults());
 
 		}
 		return pDestEvent;
@@ -102,9 +102,7 @@ public class ResultsManagerImpl implements ResultsManager {
 	}
 
 	protected boolean isResultsEqual(Result pRefResult, Result pCompResult) {
-		return (pRefResult != null && pCompResult != null
-				&& pRefResult.getCrewId() == pCompResult.getCrewId() && pRefResult
-				.getCrewName().compareTo(pCompResult.getCrewName()) == 0);
+		return (pRefResult != null && pCompResult != null);
 
 	}
 }

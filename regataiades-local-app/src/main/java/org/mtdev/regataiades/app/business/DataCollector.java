@@ -169,7 +169,8 @@ public class DataCollector {
 				}
 				if (lResult.getTime().compareTo("00:00.000") == 0
 						&& !StringUtils.isEmpty(lResult.getCrewName())
-						&& lResult.getCrewName().compareTo("0") != 0) {
+						&& lResult.getCrewName().compareTo("0") != 0
+						&& lResult.getCrewId() != 0) {
 					lNotFinished = true;
 				}
 			}
