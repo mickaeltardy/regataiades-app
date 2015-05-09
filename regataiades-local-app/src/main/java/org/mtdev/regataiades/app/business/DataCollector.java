@@ -161,7 +161,7 @@ public class DataCollector {
 
 	protected int getEventStatus(Event pCurrentEvent) {
 		if (pCurrentEvent != null && pCurrentEvent.getResults() != null) {
-			boolean lStarted = false, lNotFinished = true;
+			boolean lStarted = false, lNotFinished = false;
 			for (Result lResult : pCurrentEvent.getResults()) {
 				if (lResult.getTime().compareTo("00:00.000") != 0
 						&& lResult.getTime().compareTo("") != 0) {
@@ -169,7 +169,7 @@ public class DataCollector {
 				}
 				if (lResult.getTime().compareTo("00:00.000") == 0
 						&& !StringUtils.isEmpty(lResult.getCrewName())
-						&& lResult.getCrewName().compareTo("0") != 0
+						&& lResult.getCrewName().compareTo("0")!= 0
 						&& lResult.getCrewId() != 0) {
 					lNotFinished = true;
 				}

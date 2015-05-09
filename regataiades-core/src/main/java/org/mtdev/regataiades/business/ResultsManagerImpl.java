@@ -2,9 +2,7 @@ package org.mtdev.regataiades.business;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.mtdev.regataiades.business.interfaces.ResultsManager;
 import org.mtdev.regataiades.dao.interfaces.EventDao;
@@ -48,8 +46,8 @@ public class ResultsManagerImpl implements ResultsManager {
 		pDestEvent.setSort(pSourceEvent.getSort());
 
 		if (pSourceEvent.getResults() != null) {
-			//List<Result> lMergedResults = this.mergeResults(
-			//		pDestEvent.getResults(), pSourceEvent.getResults());
+			// List<Result> lMergedResults = this.mergeResults(
+			// pDestEvent.getResults(), pSourceEvent.getResults());
 			pDestEvent.setResults(pSourceEvent.getResults());
 
 		}

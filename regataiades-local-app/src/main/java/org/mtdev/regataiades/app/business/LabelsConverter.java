@@ -44,6 +44,8 @@ public class LabelsConverter {
 				lOutput = EventCats.series;
 			} else if (pEventCategory.toLowerCase().contains("tdr")) {
 				lOutput = EventCats.qualification;
+			} else if (pEventCategory.toLowerCase().contains("demi")) {
+				lOutput = EventCats.semi;
 			} else if (pEventCategory.toLowerCase().contains("repechage")) {
 				lOutput = EventCats.repechage;
 			}

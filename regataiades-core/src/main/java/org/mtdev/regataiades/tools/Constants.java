@@ -26,6 +26,7 @@ public abstract class Constants {
 		public static final String repechage = "repechage";
 		public static final String finals = "final";
 		public static final String boat = "boat";
+		public static final String semi = "demi";
 	}
 	public class EventStatus{
 		public static final int undefined = 0;
