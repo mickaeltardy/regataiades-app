@@ -1,27 +1,27 @@
-Bonjour $contactName $contactSurname, 
+Bonjour $contactName $contactSurname,
 
-Vous venez de mettre à jour votre inscription aux Régataïades, une compétition internationale d'aviron universitaire qui aura lieu le 9 et le 10 mai 2015 à Nantes, France.
+Vous venez de mettre à jour votre inscription aux Régataïades, une compétition internationale d'aviron universitaire qui aura lieu le 7 et le 8 mai 2016 à Nantes, France.
 
 Délégation: $name
 
-Equipages inscrits: 
+Equipages inscrits:
 #set ($map = $crewsCnt )
 #foreach ($mapEntry in $map.entrySet())
     * $mapEntry.key: $mapEntry.value
 #end
 
 
-#if( !$invited )  
+#if( !$invited )
 Le cout d'inscription est de $cost euros
 
 
-Il vous reste à régler les frais d'inscription par un des moyens suivants : 
+Il vous reste à régler les frais d'inscription par un des moyens suivants :
 * Virement banquaire en précisant "$payementLabel" (RIB disponible ici http://regataiades.fr/registration/shared/img/rib_una.jpg)
-* Chéque à l'ordre de l'Université Nantes Aviron  
+* Chéque à l'ordre de l'Université Nantes Aviron
 
 #end
 
-Veuillez noter que sans payement effectué au jour de la régate vous ne pourrez pas participer. 
+Veuillez noter que sans payement effectué au jour de la régate vous ne pourrez pas participer.
 
 N'hésitez pas à nous contacter pour tout renseignement supplementaire.
 
