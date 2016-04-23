@@ -104,11 +104,15 @@ public class NotificationManagerImpl implements NotificationManager {
 		mMailManager.sendMail(pTeam.getContactEmail(), "[Regataiades] "
 				+ lSubject, lOutput.toString());
 
+		String lSystemContent = lSystemOutput.toString();
 		mMailManager.sendMail("mishgunn@gmail.com",
-				"[Regataiades] Nouvelle inscription", lSystemOutput.toString());
+				"[Regataiades] Nouvelle inscription", lSystemContent);
+				
+		mMailManager.sendMail("t.planchenault@gmail.com",
+				"[Regataiades] Nouvelle inscription", lSystemContent );
 
 		mMailManager.sendMail("inscriptions@regataiades.fr",
-				"[Regataiades] Nouvelle inscription", lSystemOutput.toString());
+				"[Regataiades] Nouvelle inscription", lSystemContent);
 
 		return true;
 	}
@@ -135,9 +139,15 @@ public class NotificationManagerImpl implements NotificationManager {
 				+ lTemplate + "." + mLang + ".html");
 
 		String lSubject = getSubject("mealBooking");
+		String lMessageContent = lOutput.toString();
 		mMailManager.sendMail(pTeam.getContactEmail(), "[Regataiades] "
-				+ lSubject, lOutput.toString());
-		
+				+ lSubject, lMessageContent);
+	
+		mMailManager.sendMail("mishgunn@gmail.com",
+				"[Regataiades] Nouvelle reservation du repas", lMessageContent);
+				
+		mMailManager.sendMail("t.planchenault@gmail.com",
+				"[Regataiades] Nouvelle reservation du repas", lMessageContent);
 
 		return true;
 	}
