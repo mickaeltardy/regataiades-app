@@ -107,9 +107,6 @@ public class NotificationManagerImpl implements NotificationManager {
 		String lSystemContent = lSystemOutput.toString();
 		mMailManager.sendMail("mishgunn@gmail.com",
 				"[Regataiades] Nouvelle inscription", lSystemContent);
-				
-		mMailManager.sendMail("t.planchenault@gmail.com",
-				"[Regataiades] Nouvelle inscription", lSystemContent );
 
 		mMailManager.sendMail("inscriptions@regataiades.fr",
 				"[Regataiades] Nouvelle inscription", lSystemContent);
