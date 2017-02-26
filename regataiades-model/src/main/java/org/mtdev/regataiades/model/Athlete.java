@@ -39,6 +39,9 @@ public class Athlete {
 	@Column(name = "sex")
 	protected String sex;
 
+	@Column(name = "birthdate")
+	protected String birthdate;
+
 	@Column(name = "captain")
 	protected boolean captain;
 
