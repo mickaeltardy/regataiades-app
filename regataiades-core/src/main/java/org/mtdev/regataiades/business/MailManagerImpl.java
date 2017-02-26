@@ -38,6 +38,8 @@ public class MailManagerImpl implements MailManager {
 		try {
 
 			Message lMessage = new MimeMessage(lSession);
+			lMessage.addHeader("Content-Type", "text/html; charset=UTF-8");
+
 			lMessage.setFrom(new InternetAddress(lSender));
 
 			lMessage.setRecipients(Message.RecipientType.TO,
