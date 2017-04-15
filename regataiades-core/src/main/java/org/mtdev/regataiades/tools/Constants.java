@@ -15,8 +15,15 @@ public abstract class Constants {
 
 	public class BoatCats {
 
-		public static final String four = "4x";
+		public static final String quad = "4x";
 		public static final String eight = "8+";
+		public static final String four = "4+";
+	}
+
+	public class AgeCats {
+
+		public static final String master = "M";
+		public static final String univ = "";
 	}
 
 	public class EventCats {
