@@ -115,7 +115,7 @@ public class ResultsManagerImpl implements ResultsManager {
 		
 		String qStr = "delete from results where fk_event_id in (select id from events where raceType = '"+pRaceType+"');delete from events where raceType = '"+pRaceType+"';";
 
-		Query query = sessionFactory.getCurrentSession().createQuery(qStr);
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(qStr);
 		
 		query.executeUpdate();
 		
