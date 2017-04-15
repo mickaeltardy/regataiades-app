@@ -8,6 +8,8 @@ public interface ResultsManager {
 
 	boolean updateEvents(Collection<Event> pData);
 
+	boolean cleanUp(String pRaceType);
+
 	
 	
 }
