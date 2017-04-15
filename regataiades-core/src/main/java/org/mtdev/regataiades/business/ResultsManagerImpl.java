@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.hibernate.Query;
+import org.hibernate.SessionFactory;
 import org.mtdev.regataiades.business.interfaces.ResultsManager;
 import org.mtdev.regataiades.dao.interfaces.EventDao;
 import org.mtdev.regataiades.model.Event;
@@ -18,6 +20,10 @@ public class ResultsManagerImpl implements ResultsManager {
 
 	@Autowired
 	protected EventDao mEventDao;
+	
+
+	@Autowired
+	protected SessionFactory sessionFactory;
 
 	@Override
 	public boolean updateEvents(Collection<Event> pEvents) {
@@ -102,5 +108,17 @@ public class ResultsManagerImpl implements ResultsManager {
 	protected boolean isResultsEqual(Result pRefResult, Result pCompResult) {
 		return (pRefResult != null && pCompResult != null);
 
+	}
+
+	@Override
+	public boolean cleanUp(String pRaceType) {
+		
+		String qStr = "delete from results where fk_event_id in (select id from events where raceType = '"+pRaceType+"');delete from events where raceType = '"+pRaceType+"';";
+
+		Query query = sessionFactory.getCurrentSession().createQuery(qStr);
+		
+		query.executeUpdate();
+		
+		return true;
 	}
 }
