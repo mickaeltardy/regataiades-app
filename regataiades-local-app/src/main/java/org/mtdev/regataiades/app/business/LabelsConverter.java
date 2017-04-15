@@ -1,5 +1,6 @@
 package org.mtdev.regataiades.app.business;
 
+import org.mtdev.regataiades.tools.Constants.AgeCats;
 import org.mtdev.regataiades.tools.Constants.BoatCats;
 import org.mtdev.regataiades.tools.Constants.EventCats;
 import org.mtdev.regataiades.tools.Constants.SexCats;
@@ -13,6 +14,10 @@ public class LabelsConverter {
 
 		if (!StringUtils.isEmpty(pCategory)) {
 
+			if (pCategory.toLowerCase().contains("master")) {
+				lOutput.append(AgeCats.master);
+			}
+			
 			if (pCategory.toLowerCase().contains("hommes")) {
 				lOutput.append(SexCats.men);
 			} else if (pCategory.toLowerCase().contains("femmes")) {
@@ -24,6 +29,8 @@ public class LabelsConverter {
 			if (pCategory.contains("8+")) {
 				lOutput.append(BoatCats.eight);
 			} else if (pCategory.toLowerCase().contains("4x")) {
+				lOutput.append(BoatCats.quad);
+			} else if (pCategory.toLowerCase().contains("4+")) {
 				lOutput.append(BoatCats.four);
 			}
 		}
