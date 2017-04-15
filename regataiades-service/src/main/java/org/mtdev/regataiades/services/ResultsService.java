@@ -2,6 +2,7 @@ package org.mtdev.regataiades.services;
 
 import java.util.Collection;
 
+import org.hibernate.SessionFactory;
 import org.mtdev.regataiades.business.interfaces.ResultsManager;
 import org.mtdev.regataiades.dao.interfaces.EventDao;
 import org.mtdev.regataiades.dao.interfaces.UserDao;
@@ -29,11 +30,20 @@ public class ResultsService {
 
 	@Autowired
 	protected UserDao mUserDao;
-
+	
 	@RequestMapping("/update")
 	public @ResponseBody Object updateResults(
 			@RequestBody Collection<Event> pData) {
 		mResultsManager.updateEvents(pData);
+		return null;
+	}
+	
+	@RequestMapping("/cleanupraces/{code}/{raceType}")
+	public @ResponseBody Object cleanRaces(@PathVariable("code") String pCode,
+			@PathVariable("raceType") String pRaceType) {
+		if(pCode.compareTo("regataiages") == 0 && (pRaceType.compareTo("500m") == 0 || pRaceType.compareTo("1000m") == 0)){
+			return (mResultsManager.cleanUp(pRaceType)) ? "done" : "failed";
+		}
 		return null;
 	}
 
