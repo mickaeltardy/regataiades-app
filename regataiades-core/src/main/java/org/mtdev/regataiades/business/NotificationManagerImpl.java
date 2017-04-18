@@ -19,7 +19,7 @@ public class NotificationManagerImpl implements NotificationManager {
 
 	private static final int sPricePerAthlete = 10;
 
-	private static final float sPricePerMeal = 8.0f;
+	private static final float sPricePerMeal = 10.0f;
 
 	protected String mLang = "fr";
 
@@ -139,12 +139,12 @@ public class NotificationManagerImpl implements NotificationManager {
 		String lMessageContent = lOutput.toString();
 		mMailManager.sendMail(pTeam.getContactEmail(), "[Regataiades] "
 				+ lSubject, lMessageContent);
-	
+
 		mMailManager.sendMail("mishgunn@gmail.com",
 				"[Regataiades] Nouvelle reservation du repas", lMessageContent);
-				
-		mMailManager.sendMail("t.planchenault@gmail.com",
-				"[Regataiades] Nouvelle reservation du repas", lMessageContent);
+
+		mMailManager.sendMail("inscriptions@regataiades.fr",
+				"[Regataiades] Nouvelle inscription", lMessageContent);
 
 		return true;
 	}
