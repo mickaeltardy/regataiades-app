@@ -41,7 +41,7 @@ public class ResultsService {
 	@RequestMapping("/cleanupraces/{code}/{raceType}")
 	public @ResponseBody Object cleanRaces(@PathVariable("code") String pCode,
 			@PathVariable("raceType") String pRaceType) {
-		if(pCode.compareTo("regataiages") == 0 && (pRaceType.compareTo("500m") == 0 || pRaceType.compareTo("1000m") == 0)){
+		if(pCode.compareTo("regataiades") == 0 && (pRaceType.compareTo("500m") == 0 || pRaceType.compareTo("1000m") == 0)){
 			return (mResultsManager.cleanUp(pRaceType)) ? "done" : "failed";
 		}
 		return null;
