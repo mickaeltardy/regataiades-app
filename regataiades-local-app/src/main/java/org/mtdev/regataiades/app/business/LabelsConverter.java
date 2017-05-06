@@ -53,7 +53,7 @@ public class LabelsConverter {
 				lOutput = EventCats.qualification;
 			} else if (pEventCategory.toLowerCase().contains("demi")) {
 				lOutput = EventCats.semi;
-			} else if (pEventCategory.toLowerCase().contains("repechage")) {
+			} else if (pEventCategory.toLowerCase().contains("rep")) {
 				lOutput = EventCats.repechage;
 			}
 
